@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://dcr8yxugqb4wi"]
+[gd_scene load_steps=4 format=3 uid="uid://dcr8yxugqb4wi"]
 
-[node name="Node" type="Node"]
+[ext_resource type="Texture2D" uid="uid://cy1q0b3u7q6ys" path="res://icon.svg" id="1_f6efh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swjmc"]
+texture = ExtResource("1_f6efh")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_5tmwv"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_swjmc")
+
+[node name="Node" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5tmwv")
+format = 2
