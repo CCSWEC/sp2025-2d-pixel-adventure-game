@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxst5unf4bw2n"]
+[gd_scene load_steps=5 format=3 uid="uid://dxst5unf4bw2n"]
 
 [ext_resource type="Texture2D" uid="uid://tioui7trshmn" path="res://assets/ground.png" id="1_p0i1q"]
-[ext_resource type="Script" path="res://player.gd" id="2_d4kdb"]
-[ext_resource type="Texture2D" uid="uid://d4egflo8mpvqp" path="res://assets/cat_idle.png" id="2_dohga"]
+[ext_resource type="PackedScene" uid="uid://4gwxhvf84tnu" path="res://scenes/player.tscn" id="2_ekpto"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_im7yv"]
 texture = ExtResource("1_p0i1q")
@@ -51,65 +50,6 @@ texture = ExtResource("1_p0i1q")
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_im7yv")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u04v4"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 0, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xhlud"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 17, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_opwa5"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 34, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ysy5m"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 51, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6m27"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 68, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mbcgm"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 85, 19, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_48tb8"]
-atlas = ExtResource("2_dohga")
-region = Rect2(0, 102, 19, 17)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yw0hk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u04v4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xhlud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opwa5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ysy5m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6m27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mbcgm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_48tb8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 7.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j85u"]
-
 [node name="Node" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -117,21 +57,4 @@ tile_set = SubResource("TileSet_5tmwv")
 format = 2
 layer_0/tile_data = PackedInt32Array(131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 4, 0, 131088, 4, 0, 131089, 4, 0, 131090, 4, 0, 131091, 4, 0, 131092, 4, 0, 131093, 4, 0, 131094, 4, 0, 131095, 4, 0, 131096, 4, 0, 131097, 4, 0, 131098, 4, 0, 131099, 4, 0, 131100, 4, 0, 131101, 4, 0, 131102, 4, 0, 131103, 4, 0, 131104, 4, 0, -131059, 196612, 0, -131058, 196612, 0, -131057, 196612, 0, -196588, 262148, 1, -262124, 262148, 1, -262123, 262148, 1, -196583, 262148, 1, -131044, 262148, 1, -131043, 262148, 1, -196576, 262148, 1, -196575, 262148, 1)
 
-[node name="Vani (Main Character)" type="CharacterBody2D" parent="."]
-position = Vector2(35, 0)
-script = ExtResource("2_d4kdb")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Vani (Main Character)"]
-sprite_frames = SubResource("SpriteFrames_yw0hk")
-frame_progress = 0.975105
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vani (Main Character)"]
-shape = SubResource("RectangleShape2D_5j85u")
-
-[node name="Camera2D" type="Camera2D" parent="Vani (Main Character)"]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_top_margin = 0.78
-editor_draw_drag_margin = true
+[node name="Vani (Main Character)" parent="." instance=ExtResource("2_ekpto")]

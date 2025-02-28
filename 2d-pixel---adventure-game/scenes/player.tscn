@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://4gwxhvf84tnu"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_y34lg"]
+[ext_resource type="Texture2D" uid="uid://d4egflo8mpvqp" path="res://assets/cat_idle.png" id="2_k0m1f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u04v4"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 0, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhlud"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 17, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opwa5"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 34, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysy5m"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 51, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6m27"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 68, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbcgm"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 85, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48tb8"]
+atlas = ExtResource("2_k0m1f")
+region = Rect2(0, 102, 19, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yw0hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u04v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhlud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opwa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysy5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6m27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbcgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48tb8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j85u"]
+
+[node name="Vani (Main Character)" type="CharacterBody2D"]
+position = Vector2(35, 0)
+script = ExtResource("1_y34lg")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yw0hk")
+frame_progress = 0.975105
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5j85u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.78
+editor_draw_drag_margin = true
