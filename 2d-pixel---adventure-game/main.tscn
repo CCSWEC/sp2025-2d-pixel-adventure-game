@@ -129,3 +129,9 @@ frame_progress = 0.975105
 shape = SubResource("RectangleShape2D_5j85u")
 
 [node name="Camera2D" type="Camera2D" parent="Vani (Main Character)"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.78
+editor_draw_drag_margin = true
