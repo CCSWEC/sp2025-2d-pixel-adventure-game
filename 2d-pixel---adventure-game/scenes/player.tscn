@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://4gwxhvf84tnu"]
+[gd_scene load_steps=15 format=3 uid="uid://4gwxhvf84tnu"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_y34lg"]
 [ext_resource type="Texture2D" uid="uid://d4egflo8mpvqp" path="res://assets/cat_idle.png" id="2_k0m1f"]
+[ext_resource type="Script" path="res://scripts/statemachine.gd" id="3_iuxsi"]
+[ext_resource type="Script" path="res://scripts/states/walk_state.gd" id="3_ldyso"]
+[ext_resource type="Script" path="res://scripts/states/air_state.gd" id="4_bgvub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u04v4"]
 atlas = ExtResource("2_k0m1f")
@@ -68,7 +71,7 @@ script = ExtResource("1_y34lg")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yw0hk")
-frame_progress = 0.975105
+frame_progress = 0.269274
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5j85u")
@@ -80,3 +83,22 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.78
 editor_draw_drag_margin = true
+
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_iuxsi")
+initial_state = NodePath("walk_state")
+
+[node name="walk_state" type="Node" parent="State_Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_ldyso")
+player = NodePath("../..")
+SPEED = 150.0
+JUMP_VELOCITY = 250
+next_state = "air_state"
+
+[node name="air_state" type="Node" parent="State_Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_bgvub")
+player = NodePath("../..")
+SPEED = 150.0
+JUMP_VELOCITY = 250
+coyote_time = 0.1
+next_state = "walk_state"
