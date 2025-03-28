@@ -2,6 +2,8 @@ extends State
 class_name air_state
 
 @export var player : CharacterBody2D
+@export var anim : AnimatedSprite2D
+
 
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = 400
@@ -12,6 +14,7 @@ var coyote_timer = 0
 func enter():
 	print(player.has_jumped)
 	coyote_timer = coyote_time
+	anim.play("jump")
 
 func exit():
 	pass
@@ -28,6 +31,8 @@ func physics_update(delta):
 	
 	player.velocity.y += gravity*delta
 	
+	if player.velocity.y < 0: anim.play("jump")
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (not player.has_jumped and coyote_timer > 0):
 		player.velocity.y = -JUMP_VELOCITY
@@ -37,6 +42,10 @@ func physics_update(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	
+	if direction > 0: anim.flip_h = false
+	if direction < 0: anim.flip_h = true
+	
 	if direction:
 		player.velocity.x = direction * SPEED
 	else:
